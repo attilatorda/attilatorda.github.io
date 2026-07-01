@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guard Beacon — Privacy Policy</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#555; --line:#e5e5e5; --brand:#1FA77A; --bg:#ffffff; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 40px 20px 80px; }
+  header { border-bottom: 3px solid var(--brand); padding-bottom: 16px; margin-bottom: 8px; }
+  h1 { font-size: 1.9rem; margin: 0 0 4px; }
+  h2 { font-size: 1.25rem; margin: 2.2em 0 .5em; }
+  h3 { font-size: 1.05rem; margin: 1.4em 0 .4em; }
+  p, li { color: var(--ink); }
+  .meta { color: var(--muted); font-size: .9rem; }
+  .lead { font-size: 1.05rem; }
+  .callout {
+    background: #f4faf7; border: 1px solid #cdeadd; border-left: 4px solid var(--brand);
+    border-radius: 8px; padding: 14px 18px; margin: 20px 0;
+  }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: .95rem; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { background: #fafafa; }
+  a { color: var(--brand); }
+  code { background: #f2f2f2; padding: 1px 5px; border-radius: 4px; font-size: .9em; }
+  footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Guard Beacon — Privacy Policy</h1>
+    <p class="meta">Application ID: <code>com.guardbeacon.app</code><br>
+    Last updated: 1 July 2026</p>
+  </header>
+
+  <p class="lead">Guard Beacon is an anti-theft “evidence beacon” for Android. If your phone is lost
+  or stolen, it records where the device is and what it can see, and sends that evidence to storage
+  <strong>you choose</strong>, so you have a trail to help recover it.</p>
+
+  <div class="callout">
+    <strong>The short version.</strong> Guard Beacon does not run any servers and has no analytics,
+    advertising, or third-party trackers. The data it captures stays on your device and is uploaded
+    <em>only</em> to the backup destinations you set up yourself (your own Google Drive, WebDAV,
+    S3-compatible storage, or email inbox). <strong>The developer never receives, stores, or has
+    access to your data.</strong>
+  </div>
+
+  <h2>1. Who is responsible</h2>
+  <p>Guard Beacon is developed by an independent developer (“we”, “the developer”). For any
+  privacy question you can contact us at
+  <a href="mailto:codeandcanvaslabs@gmail.com">codeandcanvaslabs@gmail.com</a>.</p>
+
+  <h2>2. What data the app processes</h2>
+  <p>Guard Beacon only captures a signal when the corresponding feature is turned on. Depending on
+  your settings, it may process:</p>
+  <table>
+    <tr><th>Data</th><th>Purpose</th><th>When</th></tr>
+    <tr><td>Approximate or precise location (latitude/longitude, accuracy)</td><td>The core evidence: where the device is</td><td>While protection is on</td></tr>
+    <tr><td>Connected Wi-Fi network name</td><td>Location/context clue</td><td>Only if “Wi-Fi” logging is enabled</td></tr>
+    <tr><td>Connected Bluetooth device names</td><td>Location/context clue</td><td>Only if “Bluetooth” logging is enabled</td></tr>
+    <tr><td>Nearby cell-tower identifiers</td><td>Rough location clue</td><td>Only if “cell towers” logging is enabled</td></tr>
+    <tr><td>Local and/or public IP address</td><td>Network/location clue</td><td>Only if “IP address” logging is enabled</td></tr>
+    <tr><td>Mobile carrier (operator) change</td><td>Detects a possible SIM swap</td><td>Only if “SIM card changes” is enabled</td></tr>
+    <tr><td>Battery level</td><td>Send a last-known-location beacon before the phone dies</td><td>Only if the low-battery beacon is enabled</td></tr>
+    <tr><td>Paired smartwatch presence (heartbeat)</td><td>Alert if the watch and phone separate</td><td>Only if you use the companion Wear app</td></tr>
+    <tr><td>A random per-install identifier &amp; timestamps</td><td>To name and order the evidence files</td><td>Always (when logging)</td></tr>
+  </table>
+
+  <p>Guard Beacon does <strong>not</strong> read your contacts, messages, photos, call logs, browsing
+  history, or advertising identifiers. It does <strong>not</strong> read hardware identifiers such as
+  the IMEI, SIM serial (ICCID), or IMSI — these are not available to normal apps on modern Android.</p>
+
+  <h2>3. How the data is used</h2>
+  <p>Captured data is used for one purpose: to build a timeline of evidence that helps you locate or
+  recover the device. It is shown to you inside the app’s event log and written to an evidence file
+  (in NDJSON format) that is uploaded to the destinations you configure.</p>
+
+  <h2>4. Where the data goes</h2>
+  <ul>
+    <li><strong>On your device.</strong> A copy of each evidence file is always kept in the app’s
+      private storage on the phone, so nothing is lost even if no cloud backup is set up.</li>
+    <li><strong>To backup destinations you choose.</strong> If you connect one or more backends, each
+      evidence file is uploaded to them. Supported backends are:
+      <ul>
+        <li><strong>Google Drive</strong> — using the restricted <code>drive.file</code> scope, which
+          only lets the app see and manage the files it creates. Files go into your own Google Drive.</li>
+        <li><strong>WebDAV</strong> (e.g. Nextcloud/ownCloud), <strong>S3-compatible storage</strong>
+          (e.g. Backblaze B2, Wasabi, AWS S3, MinIO), or <strong>Email (SMTP)</strong> — all using
+          credentials and destinations that you enter and control.</li>
+      </ul>
+      These destinations are <strong>your</strong> accounts. The developer has no access to them and
+      never receives a copy of your data.</li>
+  </ul>
+  <p>You may enable <strong>evidence encryption</strong>, which locks every upload inside an AES-256
+  password-protected ZIP using a passphrase only you know. The passphrase is stored on the device in
+  Android Keystore-backed encrypted storage and is never transmitted; if you lose it, the encrypted
+  files cannot be recovered.</p>
+
+  <h2>5. Data sharing and selling</h2>
+  <p>We do <strong>not</strong> sell your data, share it with advertisers, or transfer it to any third
+  party for their own use. Guard Beacon contains no advertising SDKs and no analytics SDKs.</p>
+
+  <h2>6. Third-party services</h2>
+  <p>Guard Beacon only contacts third parties as a direct result of features you enable:</p>
+  <ul>
+    <li><strong>Google Play services / Google Drive API</strong> — used for sign-in and uploads only
+      if you connect Google Drive. Your use of Google Drive is subject to
+      <a href="https://policies.google.com/privacy">Google’s Privacy Policy</a>.</li>
+    <li><strong>api.ipify.org</strong> — contacted only if public-IP logging is enabled, to determine
+      the device’s public IP address. See <a href="https://www.ipify.org/">ipify</a>.</li>
+    <li><strong>Your configured WebDAV / S3 / SMTP provider</strong> — data is sent to whichever
+      provider you set up; that provider’s own privacy terms apply.</li>
+  </ul>
+  <p>Guard Beacon uses Google’s Drive access within the limits of the Google API Services User Data
+  Policy, including the Limited Use requirements.</p>
+
+  <h2>7. Permissions</h2>
+  <p>Optional permissions are requested only when you turn on the feature that needs them:</p>
+  <table>
+    <tr><th>Permission</th><th>Why</th></tr>
+    <tr><td>Location (fine/coarse, and “all the time”)</td><td>Core location evidence, including while the app is in the background</td></tr>
+    <tr><td>Notifications</td><td>The ongoing “protection is on” notice and theft/battery alerts</td></tr>
+    <tr><td>Phone state</td><td>Only for optional cell-tower logging</td></tr>
+    <tr><td>Nearby Bluetooth devices</td><td>Only for optional Bluetooth logging</td></tr>
+    <tr><td>Internet / network / Wi-Fi state</td><td>Uploading evidence and reading the Wi-Fi name</td></tr>
+    <tr><td>Run at startup / foreground service</td><td>Keep protection running and resume it after a reboot</td></tr>
+  </table>
+
+  <h2>8. Data retention</h2>
+  <p>Evidence files on the device remain until you delete them or uninstall the app. You can clear the
+  in-app event log at any time from <em>Settings → Data → Delete event log</em>. Copies uploaded to
+  your backup destinations are governed by you — delete them in your Google Drive, WebDAV/S3 storage,
+  or email inbox whenever you wish. Uninstalling the app removes the app’s on-device data.</p>
+
+  <h2>9. Security</h2>
+  <p>On-device evidence is kept in the app’s private storage. Sensitive settings (such as backend
+  credentials and your encryption passphrase) are stored using Android Keystore-backed encrypted
+  preferences. Optional AES-256 encryption protects uploads in transit and at rest on your backends.</p>
+
+  <h2>10. Children</h2>
+  <p>Guard Beacon is a general-purpose security tool and is not directed to children under 13
+  (or the equivalent minimum age in your country).</p>
+
+  <h2>11. Your rights and choices</h2>
+  <p>Because your data lives on your device and in destinations you control, you can access, export,
+  or delete it directly at any time — through the app, your file manager, or your cloud/email account.
+  You can also disable any signal, disconnect any backend, or stop protection at will.</p>
+
+  <h2>12. Changes to this policy</h2>
+  <p>We may update this policy as the app evolves. Material changes will be reflected here with a new
+  “Last updated” date.</p>
+
+  <h2>13. Contact</h2>
+  <p>Questions about this policy or your privacy: <a href="mailto:codeandcanvaslabs@gmail.com">codeandcanvaslabs@gmail.com</a>.</p>
+
+  <footer>
+    Guard Beacon — Privacy Policy · Last updated 1 July 2026
+  </footer>
+</div>
+</body>
+</html>
